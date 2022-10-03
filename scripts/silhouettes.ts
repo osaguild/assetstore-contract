@@ -1,5 +1,3 @@
-
-
 import { ethers } from "hardhat";
 import { silhouettesAssets } from "../assets/silhouettes";
 import { deploy } from "../utils/deploy";

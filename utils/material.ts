@@ -8,53 +8,68 @@ const options = {
 
 const parser = new XMLParser(options);
 
-const root = './svgs/materials';
+const root = "./svgs/materials";
 const categories = readdirSync(root);
 //console.log(categories);
-categories.map(category => {
-  if (category == '.DS_Store') {
+categories.map((category) => {
+  if (category == ".DS_Store") {
     return;
   }
   let files = readdirSync(`${root}/${category}`);
   //console.log(category, files.length);
-  if (category == 'hardware') {
+  if (category == "hardware") {
     let files = readdirSync(`${root}/${category}`);
     //console.log(files);
-    const items = files.filter((file, index) => {
-      return index < 100;
-    }).map((file, index) => {
-      if (file == '.DS_Store') {
-        return;
-      }
-      let xml = readFileSync(`${root}/${category}/${file}`, 'utf8');
-      //console.log(xml);
-      const obj = parser.parse(xml);
-      const svg = obj.svg;
-      const width = parseInt(svg['@_width']);
-      const height = parseInt(svg['@_height']);
-      if (svg.path && (!svg.rect || !Array.isArray(svg.rect)) && !svg.g && !svg.polygon && !svg.circle) {
-        const paths = Array.isArray(svg.path) ? svg.path : [svg.path];
-        const bodies = paths.filter((path:any) => {
-          return !path['@_fill'] && path['@_style'] != "fill:none";
-        }).map((path:any) => {
-          return path['@_d'];
-        });
-        const item = { name:file.replace(/\.svg/, "").replace(/_/g, " "), width, height, bodies };
-        return item;
-      } else {
-        console.error(file, svg);
-        process.exit(0);
-      }
-    });
+    const items = files
+      .filter((file, index) => {
+        return index < 100;
+      })
+      .map((file, index) => {
+        if (file == ".DS_Store") {
+          return;
+        }
+        let xml = readFileSync(`${root}/${category}/${file}`, "utf8");
+        //console.log(xml);
+        const obj = parser.parse(xml);
+        const svg = obj.svg;
+        const width = parseInt(svg["@_width"]);
+        const height = parseInt(svg["@_height"]);
+        if (
+          svg.path &&
+          (!svg.rect || !Array.isArray(svg.rect)) &&
+          !svg.g &&
+          !svg.polygon &&
+          !svg.circle
+        ) {
+          const paths = Array.isArray(svg.path) ? svg.path : [svg.path];
+          const bodies = paths
+            .filter((path: any) => {
+              return !path["@_fill"] && path["@_style"] != "fill:none";
+            })
+            .map((path: any) => {
+              return path["@_d"];
+            });
+          const item = {
+            name: file.replace(/\.svg/, "").replace(/_/g, " "),
+            width,
+            height,
+            bodies,
+          };
+          return item;
+        } else {
+          console.error(file, svg);
+          process.exit(0);
+        }
+      });
     console.log(`export const assets = ${JSON.stringify(items)} ;`);
   }
 });
-  /*
+/*
   mkdir(`./svgs/materials/${category}`, { recursive:false }, (err)=>{
     console.error(err);
   });
   */
- /*
+/*
   const path = `../material/src/${category}`;
   const files = readdirSync(path);
   files.map((file) => {
@@ -81,11 +96,10 @@ categories.map(category => {
       console.error("error", file);
     }
     */
-    /*
+/*
     paths.map((path2:any) => {
       console.log(path2);
     });
   });
 })
     */
-

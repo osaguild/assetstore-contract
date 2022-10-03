@@ -1,4 +1,3 @@
-
 import { ethers } from "hardhat";
 import { emojiAssets } from "../assets/openemoji";
 import { deploy } from "../utils/deploy";

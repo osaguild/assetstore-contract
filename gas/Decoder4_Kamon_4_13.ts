@@ -54,5 +54,5 @@ const gas = {
     { Unit: 11945271, ETH: 0.23891, USD: 238.91 },
     // Heavy, 0,3 (failed to do 0)
     { Unit: 7913419, ETH: 0.15827, USD: 158.27 },
-  ]
-} ;
+  ],
+};

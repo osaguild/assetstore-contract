@@ -9,53 +9,83 @@ pragma solidity ^0.8.6;
  * 2. Generative provider, which dynamically (but deterministically from the seed) generates assets.
  * 3. Data visualizer, which generates assets based on various data on the blockchain.
  *
- * Note: Asset providers MUST implements IERC165 (supportsInterface method) as well. 
+ * Note: Asset providers MUST implements IERC165 (supportsInterface method) as well.
  */
 interface IAssetProvider {
-  struct ProviderInfo {
-    string key;  // short and unique identifier of this provider (e.g., "asset")
-    string name; // human readable display name (e.g., "Asset Store")
-    IAssetProvider provider;
-  }
-  function getProviderInfo() external view returns(ProviderInfo memory);
+    struct ProviderInfo {
+        string key; // short and unique identifier of this provider (e.g., "asset")
+        string name; // human readable display name (e.g., "Asset Store")
+        IAssetProvider provider;
+    }
 
-  /**
-   * This function returns SVGPart and the tag. The SVGPart consists of one or more SVG elements.
-   * The tag specifies the identifier of the SVG element to be displayed (using <use> tag).
-   * The tag is the combination of the provider key and assetId (e.e., "asset123")
-   */
-  function generateSVGPart(uint256 _assetId) external view returns(string memory svgPart, string memory tag);
+    function getProviderInfo() external view returns (ProviderInfo memory);
 
-  /**
-   * This function returns the number of assets available from this provider. 
-   * If the total supply is 100, assetIds of available assets are 0,1,...99.
-   * The generative providers may returns 0, which indicates the provider dynamically but
-   * deterministically generates assets using the given assetId as the random seed.
-   */
-  function totalSupply() external view returns(uint256);
+    /**
+     * This function returns SVGPart and the tag. The SVGPart consists of one or more SVG elements.
+     * The tag specifies the identifier of the SVG element to be displayed (using <use> tag).
+     * The tag is the combination of the provider key and assetId (e.e., "asset123")
+     */
+    function generateSVGPart(uint256 _assetId)
+        external
+        view
+        returns (string memory svgPart, string memory tag);
 
-  /**
-   * Returns the onwer. The registration update is possible only if both contracts have the same owner. 
-   */
-  function getOwner() external view returns (address);
+    /**
+     * This function returns the number of assets available from this provider.
+     * If the total supply is 100, assetIds of available assets are 0,1,...99.
+     * The generative providers may returns 0, which indicates the provider dynamically but
+     * deterministically generates assets using the given assetId as the random seed.
+     */
+    function totalSupply() external view returns (uint256);
 
-  /**
-   * This function processes the royalty payment from the decentralized autonomous marketplace. 
-   */
-  function processPayout(uint256 _assetId) external payable;
+    /**
+     * Returns the onwer. The registration update is possible only if both contracts have the same owner.
+     */
+    function getOwner() external view returns (address);
 
-  event Payout(string providerKey, uint256 assetId, address payable to, uint256 amount);
+    /**
+     * This function processes the royalty payment from the decentralized autonomous marketplace.
+     */
+    function processPayout(uint256 _assetId) external payable;
+
+    event Payout(
+        string providerKey,
+        uint256 assetId,
+        address payable to,
+        uint256 amount
+    );
 }
 
 /**
  * This is an extended interface of IAssetProvider for those providers,
- * which offers categorized assets, such as AssetStoreProvider. 
+ * which offers categorized assets, such as AssetStoreProvider.
  */
 interface ICategorizedAssetProvider is IAssetProvider {
-  function getGroupCount() external view returns(uint32);
-  function getGroupNameAtIndex(uint32 _groupIndex) external view returns(string memory);
-  function getCategoryCount(string memory _group) external view returns(uint32);
-  function getCategoryNameAtIndex(string memory _group, uint32 _categoryIndex) external view returns(string memory);
-  function getAssetCountInCategory(string memory _group, string memory _category) external view returns(uint32);
-  function getAssetIdInCategory(string memory _group, string memory _category, uint32 _assetIndex) external view returns(uint256);
+    function getGroupCount() external view returns (uint32);
+
+    function getGroupNameAtIndex(uint32 _groupIndex)
+        external
+        view
+        returns (string memory);
+
+    function getCategoryCount(string memory _group)
+        external
+        view
+        returns (uint32);
+
+    function getCategoryNameAtIndex(string memory _group, uint32 _categoryIndex)
+        external
+        view
+        returns (string memory);
+
+    function getAssetCountInCategory(
+        string memory _group,
+        string memory _category
+    ) external view returns (uint32);
+
+    function getAssetIdInCategory(
+        string memory _group,
+        string memory _category,
+        uint32 _assetIndex
+    ) external view returns (uint256);
 }

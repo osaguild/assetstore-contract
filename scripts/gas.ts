@@ -1,4 +1,3 @@
-
 import { ethers, network } from "hardhat";
 import { actionAssets, socialAssets } from "../assets/materials";
 import { emojiAssets } from "../assets/openemoji";
@@ -11,10 +10,10 @@ import { gasEstimate } from "../utils/math";
 
 const waitForUserInput = (text: string) => {
   return new Promise((resolve, reject) => {
-    process.stdin.resume()
-    process.stdout.write(text)
-    process.stdin.once('data', data => resolve(data.toString().trim()))
-  })
+    process.stdin.resume();
+    process.stdout.write(text);
+    process.stdin.once("data", (data) => resolve(data.toString().trim()));
+  });
 };
 
 async function main() {
@@ -25,10 +24,10 @@ async function main() {
   const [owner] = await ethers.getSigners();
   const unitPrice = ethers.BigNumber.from(55);
 
-  const mintAssets = async (assets:Array<any>) => {
+  const mintAssets = async (assets: Array<any>) => {
     let results = [];
     let i;
-    for (i=0; i<assets.length; i++) {
+    for (i = 0; i < assets.length; i++) {
       assets[i].soulbound = owner.address;
       assets[i].group = ""; // gas saving
       const tx = await materialToken.mintWithAsset(assets[i], 0);
@@ -46,7 +45,11 @@ async function main() {
   const crypto = await mintAssets(cryptoAssets);
   const kamons = await mintAssets(kamonAssets);
 
-  console.log("const gas =", { action, social, emoji, silhouettes, crypto, kamons }, ";");
+  console.log(
+    "const gas =",
+    { action, social, emoji, silhouettes, crypto, kamons },
+    ";"
+  );
 }
 
 main().catch((error) => {

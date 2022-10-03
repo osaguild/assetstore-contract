@@ -17,7 +17,7 @@ Created by Satoshi Nakajima (@snakajima)
 
 ## WebUI repository
 
-The corresponding WebUI respository assumes that it can access this repository via "../contract" to access some generated contents in the "cache" folder. 
+The corresponding WebUI respository assumes that it can access this repository via "../contract" to access some generated contents in the "cache" folder.
 
 ## Setup package
 
@@ -47,13 +47,12 @@ ALCHEMY_API_KEY = "xxxx"
 
 Set your account
 
-
 ```
 MNEMONIC = "hoge hoge hoge"
 ACCOUNT_INITIAL_INDEX = 2
 ```
 
-or 
+or
 
 ```
 PRIVATE_KEY= "hogehoge"
@@ -62,13 +61,13 @@ PRIVATE_KEY= "hogehoge"
 ### deploy to rinkeby
 
 ```
-npx hardhat --network rinkeby run scripts/deploy-rinkeby.ts 
+npx hardhat --network rinkeby run scripts/deploy-rinkeby.ts
 ```
 
 ## deploy to local
 
 ```
-npx hardhat --network localhost run scripts/deploy.ts 
+npx hardhat --network localhost run scripts/deploy.ts
 ```
 
 # Etherscan verification

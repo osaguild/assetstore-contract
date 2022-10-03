@@ -5,7 +5,7 @@ import { assets } from "./kamon_assets";
 const misc = {
   group: "Hakko Daiodo (CC-BY-SA)",
   category: "Kamon",
-  assets
+  assets,
 };
 
 export const kamonAssets = loadAssets(misc);

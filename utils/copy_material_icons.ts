@@ -8,9 +8,9 @@ const options = {
 
 const parser = new XMLParser(options);
 
-const categories = readdirSync('../material/src/');
+const categories = readdirSync("../material/src/");
 console.log(categories);
-categories.map(category => {
+categories.map((category) => {
   /*
   mkdir(`./svgs/materials/${category}`, { recursive:false }, (err)=>{
     console.error(err);
@@ -23,10 +23,10 @@ categories.map(category => {
     if (existsSync(path2)) {
       let files2 = readdirSync(path2);
       files2 = files2.sort((f0, f1) => {
-        return parseInt(f0) > parseInt(f1) ? -1 : 1 ;
+        return parseInt(f0) > parseInt(f1) ? -1 : 1;
       });
-      let xml = readFileSync(`${path2}/${files2[0]}`, 'utf8');
-      writeFileSync(`./svgs/materials/${category}/${file}.svg`, xml, 'utf8');
+      let xml = readFileSync(`${path2}/${files2[0]}`, "utf8");
+      writeFileSync(`./svgs/materials/${category}/${file}.svg`, xml, "utf8");
     }
     /*
     const obj = parser.parse(xml);
@@ -49,5 +49,4 @@ categories.map(category => {
     });
     */
   });
-})
-
+});

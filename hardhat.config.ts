@@ -23,15 +23,21 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // Go to https://hardhat.org/config/ to learn more
 
 const getUrl = () => {
-  return process.env.INFURA_API_KEY ?
-    "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY : 
-    "https://eth-rinkeby.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY
+  return process.env.INFURA_API_KEY
+    ? "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY
+    : "https://eth-rinkeby.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY;
 };
 const getAccount = () => {
-  return process.env.MNEMONIC ? {
-    initialIndex: process.env.ACCOUNT_INITIAL_INDEX ? Number(process.env.ACCOUNT_INITIAL_INDEX) : 0,
-    mnemonic: process.env.MNEMONIC,
-  } : (process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [])
+  return process.env.MNEMONIC
+    ? {
+        initialIndex: process.env.ACCOUNT_INITIAL_INDEX
+          ? Number(process.env.ACCOUNT_INITIAL_INDEX)
+          : 0,
+        mnemonic: process.env.MNEMONIC,
+      }
+    : process.env.PRIVATE_KEY !== undefined
+    ? [process.env.PRIVATE_KEY]
+    : [];
 };
 
 const config: HardhatUserConfig = {
@@ -52,8 +58,9 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 1337,
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
-      }
+        url:
+          "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
+      },
     },
     ropsten: {
       url: process.env.ROPSTEN_URL || "",
@@ -71,11 +78,12 @@ const config: HardhatUserConfig = {
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     mainnet: {
-      url: "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
+      url:
+        "https://eth-mainnet.alchemyapi.io/v2/" + process.env.ALCHEMY_API_KEY,
       gasMultiplier: 1.5,
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    }
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,

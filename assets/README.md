@@ -28,17 +28,18 @@
   - type: Parts Array
 
 # Parts
+
 - body:
   - name: SVG body.
   - description: The value of d in path
   - type: string
 - color:
-  - name: SVG color. 
+  - name: SVG color.
   - description: Allow color name(blue), HEX(#4169E1), RGB or RGBA (rgba(0,0,0,0) )
   - type: string
 
-
 # Example
+
 ```
 {
   name: "Home",

@@ -1,30 +1,30 @@
 # On-Chain Asset Store, Composer and Decentralized Autonomous Marketplace
 
-This is the summary document, which describes the vision & mission of this project and technologies and methods we are building, such as SVG compression, on-chain asset strore, crowd-Minting and Draw2Earn app. 
+This is the summary document, which describes the vision & mission of this project and technologies and methods we are building, such as SVG compression, on-chain asset strore, crowd-Minting and Draw2Earn app.
 
 ## Importance of being Fully On-chain
 
-While **decentralization** is one of the fundamental values of Web3, <u>most NFTs (including bluechip NFTs such as BAYC and Azuki) are **not fully on-chain**</u>, storing metadata and images on either HTTP server or IPFS. 
+While **decentralization** is one of the fundamental values of Web3, <u>most NFTs (including bluechip NFTs such as BAYC and Azuki) are **not fully on-chain**</u>, storing metadata and images on either HTTP server or IPFS.
 
-Those NFTs will become inaccessible  once the NFT providers cease to exist or simply stop supporting them. 
+Those NFTs will become inaccessible once the NFT providers cease to exist or simply stop supporting them.
 
-It means those NFTs are not yours, and they are under the control of NFT providers, just like many Web2 services. They are more like Web 2.5 NFTs. 
+It means those NFTs are not yours, and they are under the control of NFT providers, just like many Web2 services. They are more like Web 2.5 NFTs.
 
-On the other hand, <u>**fully on-chain NFTs** such as Nouns are guaranteed to "exist" a hundred years from now</u>, as long as the blockchain exists. 
+On the other hand, <u>**fully on-chain NFTs** such as Nouns are guaranteed to "exist" a hundred years from now</u>, as long as the blockchain exists.
 
 It means you are the sole owner of those fully on-chain NFTs and nobody is able to take them away from you. "Fully on-chain NFT" means "decentralized NFT" -- the true Web3 spirit!
 
-You can easily check if your NFTs are fully on-chain or not by calling tokenURI() method on Etherscan. If the URL starts with "http:" or "ipfs:", they are not on-chain NFTs. <u>The tokenURI method of a **truly decentralized NFT contract** will always return "data:" URL, which is the proof that its metadata and image are stored on-chain</u>. 
+You can easily check if your NFTs are fully on-chain or not by calling tokenURI() method on Etherscan. If the URL starts with "http:" or "ipfs:", they are not on-chain NFTs. <u>The tokenURI method of a **truly decentralized NFT contract** will always return "data:" URL, which is the proof that its metadata and image are stored on-chain</u>.
 
 ![](https://i.imgur.com/8vEdlYu.png)
 
 ## Technical Challenges
 
-Despite such an importance, why so many NFTs are not on-chain? The answer is simple, **the gas cost** to store large data on-chain. 
+Despite such an importance, why so many NFTs are not on-chain? The answer is simple, **the gas cost** to store large data on-chain.
 
 There are some efforts to work around this problem, but there are many technical challenges.
 
-[Nouns](https://nouns.wtf) is one of a few bluechip NFTs, which are also fully on-chain. They have managed to do so, by reducing the resolution of images down to 32x32 pixels and storing them as highly compressed binary data on-chain. 
+[Nouns](https://nouns.wtf) is one of a few bluechip NFTs, which are also fully on-chain. They have managed to do so, by reducing the resolution of images down to 32x32 pixels and storing them as highly compressed binary data on-chain.
 
 ![](https://i.imgur.com/6BMmUQs.png)
 
@@ -32,7 +32,7 @@ There are some efforts to work around this problem, but there are many technical
 
 ![](https://i.imgur.com/Mp9xUwH.jpg)
 
-[Art Blocks](https://www.artblocks.io/) is a great platform to publish generative arts, but Solidity is not an ideal platform for generative arts (yet). As the compromise, they use Javascript to generate arts off-chain, store those scripts on chain (which never run on-chain) and use an HTTP server to store metadata and generated images. 
+[Art Blocks](https://www.artblocks.io/) is a great platform to publish generative arts, but Solidity is not an ideal platform for generative arts (yet). As the compromise, they use Javascript to generate arts off-chain, store those scripts on chain (which never run on-chain) and use an HTTP server to store metadata and generated images.
 
 ![](https://i.imgur.com/NxissZu.png)
 
@@ -44,13 +44,13 @@ We believe that we need to build a **decentralized autonomous marketplace** (aut
 
 ## Our Approach
 
-Here is the list of technologies and mechanisms we are building. 
+Here is the list of technologies and mechanisms we are building.
 
 ### SVG Compression (deployed)
 
 While SVG is the industry standard to exchange vector data, raw SVG data is quite verbose and not suitable as the storage format on the blockchain.
 
-After various prototpes, we have chosen to compress SVG data in the following steps. 
+After various prototpes, we have chosen to compress SVG data in the following steps.
 
 1. We convert all SVG elements to "path" elements, eliminating the need to specify element types (such as "rect" and "circle").
 2. We convert all floating points to integers by having a large and fixed view area (integer normolization).
@@ -67,7 +67,7 @@ After various prototpes, we have chosen to compress SVG data in the following st
 
 // Integer-Normalized (263 bytes)
 <svg viewBox="0 0 1024 1024"  xmlns="http://www.w3.org/2000/svg">
-  <path d="m 618 180 c -34 -11 -70 -17 -107 -17 -35 0 -68 5 -100 14 l 24 78 c 24 -7 49 -11 75 -11 28 0 55 4 81 12 z" 
+  <path d="m 618 180 c -34 -11 -70 -17 -107 -17 -35 0 -68 5 -100 14 l 24 78 c 24 -7 49 -11 75 -11 28 0 55 4 81 12 z"
    style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" />
 </svg>
 
@@ -78,37 +78,37 @@ After various prototpes, we have chosen to compress SVG data in the following st
 0x6d,0x70,0x6a,0xb4,0x5,0x63,0xde,0x44,0xf5,0xba,0x44,0xef,0x95,0x44,0xef,0xdd,0x54,0x0,0xbc,0x54,0x5,0x9c,0x54,0xe,0x6c,0x50,0x18,0x4e,0x5,0x63,0x18,0x45,0xf9,0x31,0x45,0xf5,0x4b,0x45,0xf5,0x1c,0x55,0x0,0x37,0x55,0x4,0x51,0x55,0xc,0x7a,0x0
 ```
 
-We perform this encoding off-chain (in TypeScript) before passing the data to the smart contract (on-chain asset store, described below). Please see *compressPath* method in [createMethod.ts](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/utils/createAsset.ts). 
+We perform this encoding off-chain (in TypeScript) before passing the data to the smart contract (on-chain asset store, described below). Please see _compressPath_ method in [createMethod.ts](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/utils/createAsset.ts).
 
-The decoding will be done on-chain in "view" methods, such as *tokenURI* or *generateSVGPart* (in Solidity). Even though there is no "gas cost" associated with it, an efficient implementation is critical to avoid time-out or gas-limit errors. Please see decodePath() method of [SVGPathDecoderA](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/libs/SVGPathDecoderA.sol). 
+The decoding will be done on-chain in "view" methods, such as _tokenURI_ or _generateSVGPart_ (in Solidity). Even though there is no "gas cost" associated with it, an efficient implementation is critical to avoid time-out or gas-limit errors. Please see decodePath() method of [SVGPathDecoderA](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/libs/SVGPathDecoderA.sol).
 
 ### On-Chain Asset Store (deployed)
 
-The On-chain Asset Store is a *smart contract*, which acts as the public on-chain asset storage service, allowing developers to store and share vector assets.
+The On-chain Asset Store is a _smart contract_, which acts as the public on-chain asset storage service, allowing developers to store and share vector assets.
 
-It stores various vector data in the compressed format described above, and makes them available to other smart contracts, just like the asset store for Unity 3D engine. 
+It stores various vector data in the compressed format described above, and makes them available to other smart contracts, just like the asset store for Unity 3D engine.
 
-Please see [AssetStore.sol](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/AssetStore.sol) for details. 
+Please see [AssetStore.sol](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/AssetStore.sol) for details.
 
 ### Crowd Minting (deployed)
 
-The "crowd minting" is a *method* to eliminate a large upfront cost for developers when issuing fully on-chain NFT collection (just like the developer of Cyberbrokers did).
+The "crowd minting" is a _method_ to eliminate a large upfront cost for developers when issuing fully on-chain NFT collection (just like the developer of Cyberbrokers did).
 
-Instead, we ask each NFT minter to pay a small extra gas fee which is required to upload necessary vector data to the blockchain during the minting process. 
+Instead, we ask each NFT minter to pay a small extra gas fee which is required to upload necessary vector data to the blockchain during the minting process.
 
 This is done by calling mintWithAsset() method, which stores the vector data to the On-Chain Asset Store and issues NFT(s) to the minter.
 
-We have launched three NFT collections ([Material Icons](https://assetstore.wtf/material), [Kamon Symbols](https://assetstore.wtf/kamon), [Emoji Flags](https://assetstore.wtf/emoji)) using crowd minting and <u>managed to upload over 1,400 vector images on the Ethereum blockchain</u>. 
+We have launched three NFT collections ([Material Icons](https://assetstore.wtf/material), [Kamon Symbols](https://assetstore.wtf/kamon), [Emoji Flags](https://assetstore.wtf/emoji)) using crowd minting and <u>managed to upload over 1,400 vector images on the Ethereum blockchain</u>.
 
 We also came up with an idea to give addtional rewards to those minters. Please see the "Draw2Earn" section below.
 
 ![](https://i.imgur.com/skT6eS5.png)
 
-Please see the mintWithAsset() method of [KamonToken.sol](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/KamonToken.sol) as the reference implementation. 
+Please see the mintWithAsset() method of [KamonToken.sol](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/KamonToken.sol) as the reference implementation.
 
 ### Asset Composer (beta testing)
 
-Asset Composer is a *smart contract*, which allows developers and users to create a new vector asset by composing existing vector assets, provided by asset providers (described below).
+Asset Composer is a _smart contract_, which allows developers and users to create a new vector asset by composing existing vector assets, provided by asset providers (described below).
 
 Asset Composer is also act as an asset provider, providing compositions as assets. When a composition receives a revenue (from the marketplace), Asset Composer will distribute it to appropriate asset providers autonomously.
 
@@ -116,53 +116,53 @@ Asset Composer is also act as an asset provider, providing compositions as asset
 
 ![](https://i.imgur.com/ddhwxA7.png)
 
-You can see the current version of Asset Composer code [here](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/AssetComposer.sol). 
+You can see the current version of Asset Composer code [here](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/AssetComposer.sol).
 
 ### Asset Providers (beta testing)
 
-Asset Providers are *a new category of smart contracts*, each of which provides a set of vector assets. Those assets are either stored on-chain, dynamically generated, or a combination of those.
+Asset Providers are _a new category of smart contracts_, each of which provides a set of vector assets. Those assets are either stored on-chain, dynamically generated, or a combination of those.
 
 Asset Composer acts as the registration mechanism of those asset providers so that the user can easily discover available assets when authoring new images using the On-chain Vector Editor (described below).
 
 Each Asset Provider implements [IAssetProvider](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/interfaces/IAssetProvider.sol) interface. This interface allows other smart contracts to retrieve vector assets from the asset provider. <u>It also has a payment mechanism, for autonomous marketplace</u>, such as Draw2Earn application described below.
 
-As a reference implementation, we have created a wrapper of NounsDescriptor, [NounsAssetProvider](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/NounsAssetProvider.sol), which offers dynamically generated Nouns characters as assets. 
+As a reference implementation, we have created a wrapper of NounsDescriptor, [NounsAssetProvider](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/NounsAssetProvider.sol), which offers dynamically generated Nouns characters as assets.
 
 ![](https://i.imgur.com/c8ngYmT.png)
 
 ### On-Chain Vector Editor (beta testing)
 
-On-Chain Vector Editor is a *WebUI front-end* of Asset Composer, which allows creative people to author new images by drawing and combining existing vector assets, just like Adobe Illustrator, and mint it as an NFT.
+On-Chain Vector Editor is a _WebUI front-end_ of Asset Composer, which allows creative people to author new images by drawing and combining existing vector assets, just like Adobe Illustrator, and mint it as an NFT.
 
 ![](https://i.imgur.com/lPcTuTz.png)
 
-The source code of On-Chain Vector Editor is a part of [WebUI front-end of On-Chain AsstStore](https://github.com/Cryptocoders-wtf/assetstore). 
+The source code of On-Chain Vector Editor is a part of [WebUI front-end of On-Chain AsstStore](https://github.com/Cryptocoders-wtf/assetstore).
 
 ### Draw2Earn (beta testing)
 
 During the development of the On-Chain Vector Editor described above, we came up with the idea to release it as a **Draw2Earn** application.
 
-Here is the business model. 
+Here is the business model.
 
-1. Creating a new drawing from scratch and minting it as an NFT is free. The minter needs to pay only the gas fee to upload the vector data of the drawing to the blockchain. 
-2. Creating a drawing using assets provided by *asset providers* and minting it as NFT is NOT free. <u>We will charge a small amount (probably 〜0.02ETH), and distribute most of it (97.5%) to the creators and minters of those assets</u> via *asset providers*.
+1. Creating a new drawing from scratch and minting it as an NFT is free. The minter needs to pay only the gas fee to upload the vector data of the drawing to the blockchain.
+2. Creating a drawing using assets provided by _asset providers_ and minting it as NFT is NOT free. <u>We will charge a small amount (probably 〜0.02ETH), and distribute most of it (97.5%) to the creators and minters of those assets</u> via _asset providers_.
 3. If the remixed asset is a composition of multiple assets, we will distribute the payout recursively, splitting it equally at each level.
 
-We are aware that most of the *X2Earn* services introduce their app-specific currencies, which allows developers to keep all the earnings, by paying rewards to users in the app-specific currency. 
+We are aware that most of the _X2Earn_ services introduce their app-specific currencies, which allows developers to keep all the earnings, by paying rewards to users in the app-specific currency.
 
-This approach creates a so-called *token economy*, giving the developer the power to print money as the central bank of that economy.
+This approach creates a so-called _token economy_, giving the developer the power to print money as the central bank of that economy.
 
-We chose **NOT** to take that approach because it will turn the service into a *pseudo Ponzi scheme*, where the infinite growth is required to keep it attractive.
+We chose **NOT** to take that approach because it will turn the service into a _pseudo Ponzi scheme_, where the infinite growth is required to keep it attractive.
 
-We believe the direct and immediate distribution of revenue to creators (using the *autonomous revenue sharing mechanism*) is fair to everybody and a better mechanism to create a healthy and sustainable ecosystem.
+We believe the direct and immediate distribution of revenue to creators (using the _autonomous revenue sharing mechanism_) is fair to everybody and a better mechanism to create a healthy and sustainable ecosystem.
 
 ### CC-Share-Earnings (draft proposal)
 
-During the development process of the Draw2Earn business model, we realized that we need a new kind of Creative Commons license, *CC-Share-Earnings*, which is suitable for on-chain assets (such as vector images, but not limited to them).
+During the development process of the Draw2Earn business model, we realized that we need a new kind of Creative Commons license, _CC-Share-Earnings_, which is suitable for on-chain assets (such as vector images, but not limited to them).
 
 <u>This license allows other people to copy or remix it just like regular Creative Commons, but revenue sharing is required if somebody uses it to generate revenue</u>.
 
-As described above, [IAssetProvider](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/interfaces/IAssetProvider.sol) interface has a built-in revenue-sharing mechanism (*processPayout* method), and <u>it allows us to create **autonomous marketplace** to buy and sell vector assets</u>. 
+As described above, [IAssetProvider](https://github.com/Cryptocoders-wtf/assetstore-contract/blob/main/contracts/interfaces/IAssetProvider.sol) interface has a built-in revenue-sharing mechanism (_processPayout_ method), and <u>it allows us to create **autonomous marketplace** to buy and sell vector assets</u>.
 
 We'd like to propose it as the standard mechanism to share revenue for various on-chain contents (not only images, but music and videos eventually).
 
@@ -176,7 +176,7 @@ In order to make it easy for developers to get into this market, we are building
 
 ![](https://i.imgur.com/HVAIajb.png)
 
-We would like to invite other developers to join this effort. If anybody is interested in it, please join the [On-Chain Asset Store](https://discord.gg/4JGURQujXK) discord. 
+We would like to invite other developers to join this effort. If anybody is interested in it, please join the [On-Chain Asset Store](https://discord.gg/4JGURQujXK) discord.
 
 ## Decentralized Autonomous Marketplace
 

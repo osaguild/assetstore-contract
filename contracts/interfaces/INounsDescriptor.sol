@@ -17,7 +17,7 @@
 
 pragma solidity ^0.8.6;
 
-import { INounsSeeder } from './INounsSeeder.sol';
+import {INounsSeeder} from "./INounsSeeder.sol";
 
 interface INounsDescriptor {
     event PartsLocked();
@@ -32,7 +32,10 @@ interface INounsDescriptor {
 
     function baseURI() external returns (string memory);
 
-    function palettes(uint8 paletteIndex, uint256 colorIndex) external view returns (string memory);
+    function palettes(uint8 paletteIndex, uint256 colorIndex)
+        external
+        view
+        returns (string memory);
 
     function backgrounds(uint256 index) external view returns (string memory);
 
@@ -54,7 +57,10 @@ interface INounsDescriptor {
 
     function glassesCount() external view returns (uint256);
 
-    function addManyColorsToPalette(uint8 paletteIndex, string[] calldata newColors) external;
+    function addManyColorsToPalette(
+        uint8 paletteIndex,
+        string[] calldata newColors
+    ) external;
 
     function addManyBackgrounds(string[] calldata backgrounds) external;
 
@@ -66,7 +72,8 @@ interface INounsDescriptor {
 
     function addManyGlasses(bytes[] calldata glasses) external;
 
-    function addColorToPalette(uint8 paletteIndex, string calldata color) external;
+    function addColorToPalette(uint8 paletteIndex, string calldata color)
+        external;
 
     function addBackground(string calldata background) external;
 
@@ -84,9 +91,15 @@ interface INounsDescriptor {
 
     function setBaseURI(string calldata baseURI) external;
 
-    function tokenURI(uint256 tokenId, INounsSeeder.Seed memory seed) external view returns (string memory);
+    function tokenURI(uint256 tokenId, INounsSeeder.Seed memory seed)
+        external
+        view
+        returns (string memory);
 
-    function dataURI(uint256 tokenId, INounsSeeder.Seed memory seed) external view returns (string memory);
+    function dataURI(uint256 tokenId, INounsSeeder.Seed memory seed)
+        external
+        view
+        returns (string memory);
 
     function genericDataURI(
         string calldata name,
@@ -94,5 +107,8 @@ interface INounsDescriptor {
         INounsSeeder.Seed memory seed
     ) external view returns (string memory);
 
-    function generateSVGImage(INounsSeeder.Seed memory seed) external view returns (string memory);
+    function generateSVGImage(INounsSeeder.Seed memory seed)
+        external
+        view
+        returns (string memory);
 }

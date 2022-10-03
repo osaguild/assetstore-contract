@@ -49,18 +49,18 @@ const gas = {
     { Unit: 19607654, ETH: 0.39215, USD: 392.15 },
     { Unit: 7720315, ETH: 0.15441, USD: 154.41 },
     { Unit: 4412224, ETH: 0.08824, USD: 88.24 },
-    { Unit: 5926942, ETH: 0.11854, USD: 118.54 },    
+    { Unit: 5926942, ETH: 0.11854, USD: 118.54 },
     // Medium while(limit * limit < length * 2)
     { Unit: 11224079, ETH: 0.22448, USD: 224.48 },
     { Unit: 19607693, ETH: 0.39215, USD: 392.15 },
     { Unit: 7717530, ETH: 0.15435, USD: 154.35 },
     { Unit: 4401338, ETH: 0.08803, USD: 88.03 },
     { Unit: 5912830, ETH: 0.11826, USD: 118.26 },
-    // Medium while (limit * limit * limit < length) 
+    // Medium while (limit * limit * limit < length)
     { Unit: 11104727, ETH: 0.22209, USD: 222.09 },
     { Unit: 20449524, ETH: 0.40899, USD: 408.99 },
     { Unit: 7029501, ETH: 0.14059, USD: 140.59 },
     { Unit: 4205985, ETH: 0.08412, USD: 84.12 },
-    { Unit: 5969718, ETH: 0.11939, USD: 119.39 }
-  ] // Heavy
-} ;
+    { Unit: 5969718, ETH: 0.11939, USD: 119.39 },
+  ], // Heavy
+};

@@ -1,5 +1,3 @@
-
-
 import { ethers } from "hardhat";
 import { multiAssets } from "../assets/multi";
 import { deploy } from "../utils/deploy";

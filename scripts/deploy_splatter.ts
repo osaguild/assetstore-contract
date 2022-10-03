@@ -1,7 +1,7 @@
 import { ethers, network } from "hardhat";
-import { token_addresses as local_addresses } from '../cache/addresses_draw_localhost';
-import { token_addresses as rinkeby_addresses } from '../cache/addresses_draw_rinkeby';
-import { token_addresses as goerli_addresses } from '../cache/addresses_draw_goerli';
+import { token_addresses as local_addresses } from "../cache/addresses_draw_localhost";
+import { token_addresses as rinkeby_addresses } from "../cache/addresses_draw_rinkeby";
+import { token_addresses as goerli_addresses } from "../cache/addresses_draw_goerli";
 
 const getRegistryAddress = () => {
   if (network.name == "localhost") {
@@ -29,7 +29,9 @@ async function main() {
   await contractArt.deployed();
   console.log(`      splatter_art="${contractArt.address}"`);
 
-  const registryFactory = await ethers.getContractFactory("AssetProviderRegistry");
+  const registryFactory = await ethers.getContractFactory(
+    "AssetProviderRegistry"
+  );
   const registry = registryFactory.attach(registryAddress);
 
   const tx = await registry.functions.registerProvider(contract.address);
@@ -45,7 +47,6 @@ async function main() {
   if (event2) {
     console.log("Splatter event", event2.event);
   }
-
 }
 
 main().catch((error) => {
