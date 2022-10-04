@@ -1,5 +1,5 @@
 import { ethers } from "hardhat";
-import { kamonAssets } from "../../../assets/kamons";
+import { kamonAssets } from "../../assets/kamons";
 
 async function main() {
   // KamonToken address
