@@ -1,6 +1,5 @@
 import { ethers } from "hardhat";
-import { loadAssets } from "../createAsset";
-import chuukageUraZakura from "./assets/ChuukageUraZakura.json";
+import { kamonAssets } from "./assets/sample";
 
 async function main() {
   // KamonToken address
@@ -15,15 +14,8 @@ async function main() {
     "ETH"
   );
 
-  // set assets
-  const assets = loadAssets({
-    group: "Hakko Daiodo (CC-BY-SA)",
-    category: "Kamon",
-    assets: [chuukageUraZakura],
-  });
-
   // mint
-  const asset = assets[0];
+  const asset = kamonAssets[0];
   asset.soulbound = deployer.address;
   const factory = await ethers.getContractFactory("KamonToken");
   const kamonToken = factory.attach(kamon);
