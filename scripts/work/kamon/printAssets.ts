@@ -1,4 +1,4 @@
-import { kamonAssets } from "../../assets/kamons";
+import { kamonAssets } from "./assets/sample";
 
 const main = async () => {
   // print compressed kamon assets

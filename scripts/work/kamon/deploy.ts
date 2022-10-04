@@ -43,9 +43,9 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 
-/**
- * deployed addresses on goerli testnet
- * assetStore: 0x4159FbA0C0B51341790E9191f35E39a98B454d52
- * decoder: 0x4b1AaD75C1a14ce3121a61431FAa60b261D81e8e
- * kamon: 0x7AdA5e9751ce2Aa9Ab7FbAb18eFFD3D6dE3d70dA
- */
+/*
+deployed addresses on goerli testnet
+assetStore : 0x4159FbA0C0B51341790E9191f35E39a98B454d52
+decoder    : 0x4b1AaD75C1a14ce3121a61431FAa60b261D81e8e
+kamon      : 0x7AdA5e9751ce2Aa9Ab7FbAb18eFFD3D6dE3d70dA
+*/
